@@ -21,10 +21,6 @@ const PostItem = ({
    const [updatePostModal, setUpdatePostModal] = useState(false);
    const [deletePostError, setDeletePostError] = useState("");
 
-   const idFromLocalStorage = Number(localStorage.getItem("userId"));
-
-   console.log(idFromLocalStorage);
-
    async function deletePost(id) {
       const res = await $api
          .delete(`/posts/${id}`)
@@ -56,7 +52,7 @@ const PostItem = ({
             dangerouslySetInnerHTML={{ __html: content }}
          />
          <div className="post__btns">
-            {user.id || idFromLocalStorage === authorId ? (
+            {user.id === authorId ? (
                <div>
                   <MyButton
                      onClick={() => setUpdatePostModal(true)}

@@ -4,7 +4,7 @@ import PostList from "./components/postList";
 import "./styles/app.css";
 
 const App = () => {
-   const [user, setUser] = useState({});
+   const [user, setUser] = useState({ id: 0 });
 
    return (
       <div className="App">

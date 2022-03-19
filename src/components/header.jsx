@@ -23,8 +23,6 @@ const Header = ({ user, setUser }) => {
    const [registerPasswordInvalid, setRegisterPasswordInvalid] = useState("");
    const [registerConfirmInvalid, setRegisterConfirmInvalid] = useState("");
 
-   const isAuth = Number(localStorage.getItem("isAuth"));
-
    async function loginFetch(e) {
       e.preventDefault();
       const res = await $api
@@ -54,8 +52,6 @@ const Header = ({ user, setUser }) => {
          });
       if (res) {
          localStorage.setItem("token", res.data.token);
-         localStorage.setItem("isAuth", 1);
-         localStorage.setItem("userId", res.data.user.id);
          setUser(res.data.user);
          setLoginModal(false);
       }
@@ -116,17 +112,15 @@ const Header = ({ user, setUser }) => {
    }
 
    async function logout() {
-      await $api.get("/auth/logout");
-      localStorage.removeItem("token");
-      localStorage.removeItem("userId");
-      localStorage.setItem("isAuth", 0);
-      setUser({});
+      await $api
+         .get("/auth/logout")
+         .finally(localStorage.removeItem("token"), setUser({ id: 0 }));
    }
 
    return (
       <div className="header">
          <div className="header__content">
-            {isAuth ? (
+            {user.id > 0 ? (
                <div>
                   <MyButton
                      onClick={() => setCreatePostModal(true)}
