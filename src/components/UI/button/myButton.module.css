@@ -1,0 +1,6 @@
+.myBtn {
+   cursor: pointer;
+   width: auto;
+   max-width: 150px;
+   padding: 2px;
+}
