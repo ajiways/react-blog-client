@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const API_URL = `http://localhost:4999`;
+export const API_URL = `https://kswbtw-blog-backend.herokuapp.com/`;
 
 const $api = axios.create({
    withCredentials: true,
