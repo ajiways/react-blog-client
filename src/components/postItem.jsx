@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import $api from "./http";
 import MyButton from "./UI/button/myButton";
 import MyModal from "./UI/MyModal/myModal";
+
+import { context } from "../App";
 
 const PostItem = ({
    authorLogin,
@@ -21,6 +23,8 @@ const PostItem = ({
    const [updatePostModal, setUpdatePostModal] = useState(false);
    const [deletePostError, setDeletePostError] = useState("");
 
+   const { func } = useContext(context);
+
    async function deletePost(id) {
       const res = await $api
          .delete(`/posts/${id}`)
@@ -31,7 +35,7 @@ const PostItem = ({
    }
 
    async function updatePost(newContent, postId) {
-      newContent.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+      newContent = newContent.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
 
       const res = await $api
          .put(`/posts`, {
@@ -42,6 +46,7 @@ const PostItem = ({
 
       if (res) {
          setUpdatePostModal(false);
+         func();
       }
    }
 

@@ -102,7 +102,7 @@ const Header = ({ user, setUser }) => {
    const { func } = useContext(context);
 
    async function createPost(content) {
-      content.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+      content = content.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
 
       const res = await $api
          .post("/posts", { markdown: content })
