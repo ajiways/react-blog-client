@@ -30,7 +30,7 @@ const PostItem = ({
          .delete(`/posts/${id}`)
          .catch((err) => setDeletePostError(err.response.data.message));
       if (res) {
-         setPosts(posts.filter((post) => post.id !== id));
+         func();
       }
    }
 
