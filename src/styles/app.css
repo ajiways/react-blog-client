@@ -4,6 +4,10 @@
    box-sizing: border-box;
 }
 
+body {
+   font-family: sans-serif;
+}
+
 #root {
    display: flex;
    justify-content: center;
@@ -25,6 +29,15 @@
    flex-direction: column;
    width: 100%;
    padding: 10px;
+}
+
+.post img {
+   max-width: 100%;
+   width: 100%;
+}
+
+.post-top {
+   margin-bottom: 10px;
 }
 
 .post__btns {
