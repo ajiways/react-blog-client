@@ -19,7 +19,7 @@ const App = () => {
    const { Provider } = context;
 
    return (
-      <Provider>
+      <Provider value={{ func: null }}>
          <div className="App">
             <Header setUser={setUser} user={user} />
             <PostList user={user} />
