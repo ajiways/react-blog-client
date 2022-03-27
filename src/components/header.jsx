@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import MyButton from "./UI/button/myButton";
 import MyInput from "./UI/input/myInput";
 import MyModal from "./UI/MyModal/myModal";
 import $api from "./http/index";
+
+import { context } from "../App";
 
 const Header = ({ user, setUser }) => {
    const [loginModal, setLoginModal] = useState(false);
@@ -93,10 +95,15 @@ const Header = ({ user, setUser }) => {
 
       if (res) {
          setRegisterModal(false);
+         setLoginModal(true);
       }
    }
 
+   const { func } = useContext(context);
+
    async function createPost(content) {
+      content.replace(/[\>]+/g, "&#60;");
+
       const res = await $api
          .post("/posts", { markdown: content })
          .catch((err) => {
@@ -109,6 +116,7 @@ const Header = ({ user, setUser }) => {
 
       if (res) {
          setCreatePostModal(false);
+         func();
       }
    }
 

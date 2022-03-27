@@ -1,8 +1,10 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState, useContext } from "react";
 import PostItem from "./postItem";
 import $api from "./http";
 import { getPageCount, getPagesArray } from "../utils/pages";
 import MyButton from "./UI/button/myButton";
+
+import { context } from "../App";
 
 const PostList = ({ user }) => {
    const [posts, setPosts] = useState([]);
@@ -19,6 +21,10 @@ const PostList = ({ user }) => {
       setTotalPages(getPageCount(totalCount, take));
       setPosts(response.data.posts);
    }, [skip, take]);
+
+   const localContext = useContext(context);
+
+   localContext.func = fetchPosts;
 
    useEffect(() => {
       fetchPosts();
