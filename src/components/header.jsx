@@ -52,6 +52,7 @@ const Header = ({ user, setUser }) => {
          });
       if (res) {
          localStorage.setItem("token", res.data.token);
+         localStorage.setItem("user", JSON.stringify(res.data.user));
          setUser(res.data.user);
          setLoginModal(false);
       }
@@ -114,7 +115,11 @@ const Header = ({ user, setUser }) => {
    async function logout() {
       await $api
          .get("/auth/logout")
-         .finally(localStorage.removeItem("token"), setUser({ id: 0 }));
+         .finally(
+            localStorage.removeItem("token"),
+            setUser({ id: 0 }),
+            localStorage.removeItem("user")
+         );
    }
 
    return (

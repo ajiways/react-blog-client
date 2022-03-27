@@ -32,7 +32,11 @@ const PostList = ({ user }) => {
    return (
       <div className="post__list">
          <h1 className="list__title">Список постов</h1>
-         <MyButton style={{ marginBottom: "10px" }} onClick={() => fetchPosts()} title="Обновить" />
+         <MyButton
+            style={{ marginBottom: "10px" }}
+            onClick={() => fetchPosts()}
+            title="Обновить"
+         />
          {posts.length ? (
             posts.map((post) => (
                <PostItem
@@ -55,7 +59,11 @@ const PostList = ({ user }) => {
          )}
          <div className="page__wrapper">
             {pagesArray.map((p) => (
-               <span onClick={() => changePage(p)} key={p} className={page === p ? "page page__current" : "page"}>
+               <span
+                  onClick={() => changePage(p)}
+                  key={p}
+                  className={page === p ? "page page__current" : "page"}
+               >
                   {p}
                </span>
             ))}
