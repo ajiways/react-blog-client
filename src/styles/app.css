@@ -51,8 +51,16 @@ body {
 
 .post__content {
    border: 1px solid black;
-   padding: 5px;
+   padding: 10px 20px;
    margin-bottom: 10px;
+   background-color: #301151;
+   background-color: darken(#000, 4);
+   color: #fff;
+   border-radius: 4px;
+   box-shadow: 1px 3px 1px #000;
+   cursor: pointer;
+   letter-spacing: 2.3px;
+   word-break: break-all;
 }
 
 .posts__empty {
